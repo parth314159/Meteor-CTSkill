@@ -1,22 +1,32 @@
-import { Template } from 'meteor/templating';
+//import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { SAT } from '/Collections/SAT.js';
+//district
 
-import './main.html';
-
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+Template.main.onCreated(function satcreated() {
+	Meteor.subscribe('sat');
+	this.tabdata = new ReactiveVar(SAT.find());
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
+Template.main.helpers({
+  sat:function(){
+    return SAT.find({},{sort: {district: 1}});
   },
+
+  tabledata:function() {
+    return  Template.instance().tabdata.get();
+  }
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+Template.main.events({
+
+	'click	#search':	function	(event,	template){
+
+		const district = template.find("#district").value;
+		//alert(district);
+		 event.preventDefault();
+      //console.log(" sorting by time");
+      	template.tabdata.set(SAT.find({'district':district}));
+		//Session.set('table-data',);
+	}
 });

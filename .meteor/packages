@@ -25,3 +25,5 @@ iron:router
 http
 meteortoys:allthings
 json
+autopublish
+session

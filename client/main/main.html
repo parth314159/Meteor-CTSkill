@@ -1,22 +1,95 @@
 <template name="main"> 
   <body>
-    
+
     <div class="container-fluid">
-<div class="row">
-      <div class="col-xs-12">
-        <h1>Welcome to Meteor!</h1>
+          <div class="row">
+             <h2 class = "text-center"> SAT test for Schools in CT  </h2>      
+            <br>
+
+          </div>
+          <div class="row">
+          
+          <div class="col-xs-8 text-center">
+          <select class="form-control formInput" name="district" id="district">
+            {{#each sat}}
+            <option value="{{district}}">{{district}}</option>>
+            {{/each}}
+
+          </select>
+        </div>
+        <div class="col-xs-4 text-center">
+         <input class="btn btn-primary" value="search" type="button" id="search">
+       </div>
+       
+       
+     </div>
+
+  
+   <div class="row">
+   <br>
+   <br>
+    <div class="col-xs-6">
+      {{> openlayermap}}
     </div>
+    <div class="col-xs-6">
+       <!-- <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>-->
+      <!--<tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>-->
+      {{#each tabledata}}
+      <h3 class="text-center">{{school}}</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>Participation rate 2013</td>
+            <td>{{participation_rate_estimate_2013}}</td>
+          </tr>
+          <tr>
+            <td>Test Takers 2013</td>
+            <td>{{test_takers_2013}}</td>
+          </tr>
+          <tr>
+            <td>Percent Meeting Benchmark</td>
+            <td>{{percent_meeting_benchmark_2013}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+      <br>
+      <br>
+      {{/each}}
     </div>
-    <div class="row">
-      <div class="col-xs-6">
-        {{> openlayermap}}
-      </div>
-       <div class="col-xs-6">
-        {{ > table }}
-      </div>
-    </div>
+    
   </div>
-   
-  </body>
+</div>
+
+</body>
 
 </template>
